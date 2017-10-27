@@ -8,21 +8,22 @@ def print_menu():
         index += 1
     
 def print_todo_items_list(todo_list):
-    for elm in todo_list:
-        print(elm)
-
+    print('Item Name')
+    print(todo_list.name)
+    print('Todo description')
+    print(todo_list.description)
 
 
 def get_choice():
-    return input('Enter your choice ')
+    return input('Enter your choice: ')
 
 
 def get_item_name():
-    return input('Enter item name ')
+    return input('Enter item name: ')
 
 
 def get_item_description():
-    return input('Enter item description ')
+    return input('Enter item description: ')
 
 
 def main():
