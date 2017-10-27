@@ -13,18 +13,39 @@ def start_controller():
             Todo.all_todo_items.append(todo_item)
             break
         elif choice == '2':
-            pass
+            print_todo_items_list(Todo.all_todo_items)
+            choice_item_by_index = int(input('Choose item index to modifing: '))
+            for i in Todo.all_todo_items:
+                if i == Todo.all_todo_items[choice_item_by_index]:
+                    i.name = get_item_name()
+                    i.description = get_item_description()
+                    break
+            break
+
         elif choice == '3':
-            pass
+            choice_item_by_index = get_item_index()
+            for i in Todo.all_todo_items:
+                if i == Todo.all_todo_items[choice_item_by_index]:
+                    Todo.all_todo_items.remove(i)
+                return
+
         elif choice == '4':
-            pass
-        elif choice == '4':
-            pass
+            choice_item_by_index = get_item_index()
+            for i in Todo.all_todo_items:
+                if i == Todo.all_todo_items[choice_item_by_index]:
+                    i.is_done = True
+                    return
+
         elif choice == '5':
             print_todo_items_list(Todo.all_todo_items)
             break
         elif choice == '6':
-            pass
+            index = 0
+            for i in Todo.all_todo_items:
+                print_todo_item_details(i, index)
+                index += 1
+            break
+
 
 
 def add_todo_item():

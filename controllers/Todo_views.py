@@ -12,19 +12,21 @@ def print_menu():
 
 
 def print_todo_items_list(todo_list):
-    index = 1
+    index = 0
     for elm in todo_list:
-        print_todo_details(elm, index)
+        print(index)
+        print('Name: ', elm.name)
+        print('================')
         index += 1
 
 
-def print_todo_details(todo_item, index):
-    print("================")
-    print(index)
-    print("name: ", todo_item.name)
-    print("status: ", todo_item.is_done)
-    print("description: ", todo_item.description)
-    print("================")
+def print_todo_item_details(todo_item, index):
+    print('================')
+    print('Index: ', index)
+    print('Status: ', todo_item.is_done)
+    print('Name: ', todo_item.name)
+    print('Description: ', todo_item.description)
+    print('================')
 
 
 def get_choice():
@@ -43,6 +45,9 @@ def item_name_too_long():
 
 def item_description_too_long():
     return 'Too long item description, maximum 150 characters'
+
+def get_item_index():
+    return int(input('Choose item index to modifing: '))
 
 def main():
     print_menu()
