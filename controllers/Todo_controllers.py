@@ -1,5 +1,5 @@
-from Todo_models import Todo
-from Todo_views import *
+from models.Todo_models import Todo
+from views.Todo_views import *
 import os
 import sys
 

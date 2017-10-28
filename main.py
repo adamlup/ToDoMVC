@@ -1,5 +1,8 @@
+from controllers.Todo_controllers import start_controller
+
 def main():
-    pass
+    while True:
+        start_controller()
 
 if __name__ == '__main__':
     main()
