@@ -1,10 +1,7 @@
-from Todo_models import Todo
-
-
 def print_menu():
     choice_list = ['Add ToDo', 'Modify item', 'Delete item',
                    'Mark item as done', 'Display item\'s list',
-                   'Display specific todo item\'s details']
+                   'Display specific todo item\'s details', 'Exit']
     index = 1
     for elm in choice_list:
         print(index, elm)
@@ -30,7 +27,7 @@ def print_todo_item_details(todo_item, index):
 
 
 def get_choice():
-    return input('Enter your choice: ')
+    return input('\nEnter your choice: ')
 
 
 def get_item_name():
@@ -40,18 +37,18 @@ def get_item_name():
 def get_item_description():
     return input('Enter item description: ')
 
+
 def item_name_too_long():
-    return 'Too long item name, maximum 20 characters.'
+    return print('Too long item name, maximum 20 characters.')
+
 
 def item_description_too_long():
-    return 'Too long item description, maximum 150 characters'
+    return print('Too long item description, maximum 150 characters')
+
 
 def get_item_index():
-    return int(input('Choose item index to modifing: '))
-
-def main():
-    print_menu()
+    return input('Choose item index to modifing: ')
 
 
-if __name__ == '__main__':
-    main()
+def invalid_input():
+    return print('Invalid input')
