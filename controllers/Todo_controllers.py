@@ -14,7 +14,7 @@ def start_controller():
             break
         elif choice == '2':
             print_todo_items_list(Todo.all_todo_items)
-            choice_item_by_index = int(input('Choose item index to modifing: '))
+            choice_item_by_index = choice_item_by_index()
             for i in Todo.all_todo_items:
                 if i == Todo.all_todo_items[choice_item_by_index]:
                     i.name = get_item_name()
@@ -27,7 +27,7 @@ def start_controller():
             for i in Todo.all_todo_items:
                 if i == Todo.all_todo_items[choice_item_by_index]:
                     Todo.all_todo_items.remove(i)
-                return
+            break
 
         elif choice == '4':
             choice_item_by_index = get_item_index()
@@ -39,6 +39,7 @@ def start_controller():
         elif choice == '5':
             print_todo_items_list(Todo.all_todo_items)
             break
+
         elif choice == '6':
             index = 0
             for i in Todo.all_todo_items:
@@ -51,11 +52,11 @@ def start_controller():
 def add_todo_item():
     while True:
         name = get_item_name()
-        if len(name) > 3:
+        if len(name) > 20:
             print(item_name_too_long())
             continue
         description = get_item_description()
-        if len(description) > 3:
+        if len(description) > 150:
             print(item_description_too_long())
             continue
         else:
