@@ -59,48 +59,49 @@ def add_todo_item():
 
 def modify_item():
     while True:
-        choice_item_by_index = get_item_index()
-        if choice_item_by_index.isdigit():
-            choice_item_by_index = int(choice_item_by_index)
-            if choice_item_by_index in range(len(Todo.all_todo_items)):
-                for i in Todo.all_todo_items:
-                    if i == Todo.all_todo_items[choice_item_by_index]:
+        user_input = get_and_check_input()
+        if user_input:
+            for i in Todo.all_todo_items:
+                    if i == Todo.all_todo_items[user_input]:
                         i.name = get_item_name()
                         i.description = get_item_description()
-                break
-            else:
-                return invalid_input()
+            break
         else:
             return invalid_input()
 
 
 def remove_item():
     while True:
-        choice_item_by_index = get_item_index()
-        if choice_item_by_index.isdigit():
-            choice_item_by_index = int(choice_item_by_index)
-            if choice_item_by_index in range(len(Todo.all_todo_items)):
-                for i in Todo.all_todo_items:
-                    if i == Todo.all_todo_items[choice_item_by_index]:
+        user_input = get_and_check_input()
+        if user_input:
+            for i in Todo.all_todo_items:
+                    if i == Todo.all_todo_items[user_input]:
                         Todo.all_todo_items.remove(i)
-                break
-            else:
-                return invalid_input()
+            break
         else:
             return invalid_input()
 
 
 def change_item_status():
     while True:
+        user_input = get_and_check_input()
+        if user_input:
+            for i in Todo.all_todo_items:
+                if i == Todo.all_todo_items[user_input]:
+                    i.is_done = True
+            break
+        else:
+            return invalid_input()
+
+
+def get_and_check_input():
+    while True:
         choice_item_by_index = get_item_index()
         if choice_item_by_index.isdigit():
             choice_item_by_index = int(choice_item_by_index)
             if choice_item_by_index in range(len(Todo.all_todo_items)):
-                for i in Todo.all_todo_items:
-                    if i == Todo.all_todo_items[choice_item_by_index]:
-                        i.is_done = True
-                break
+                return choice_item_by_index
             else:
-                return invalid_input()
+                return False
         else:
-            return invalid_input()
+            return False
