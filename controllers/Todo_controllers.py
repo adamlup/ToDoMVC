@@ -44,64 +44,64 @@ def start_controller():
 
 
 def add_todo_item():
+    max_name_lenght = 20
+    max_description_lenght = 150
     while True:
         name = get_item_name()
-        if len(name) > 20:
+        if len(name) > max_name_lenght:
             item_name_too_long()
             continue
         description = get_item_description()
-        if len(description) > 150:
+        if len(description) > max_description_lenght:
             item_description_too_long()
             continue
         else:
             return Todo(name, description)
 
 
-def modify_item():
-    while True:
-        user_input = get_and_check_input()
-        if user_input:
-            for i in Todo.all_todo_items:
-                    if i == Todo.all_todo_items[user_input]:
-                        i.name = get_item_name()
-                        i.description = get_item_description()
-            break
+def get_and_check_input():
+    choice_item_by_index = get_item_index()
+    if choice_item_by_index.isdigit():
+        choice_item_by_index = int(choice_item_by_index)
+        if choice_item_by_index in range(len(Todo.all_todo_items)):
+            return choice_item_by_index
         else:
-            return invalid_input()
+            return False
+    else:
+        return False
+
+
+def linking_user_input_to_item_index():
+    user_input = get_and_check_input()
+    if user_input:
+        for i in Todo.all_todo_items:
+            if i == Todo.all_todo_items[user_input]:
+                return i
+        return False
+    else:
+        return False
+
+
+def modify_item():
+        todo_item = linking_user_input_to_item_index()
+        if todo_item is False:
+            invalid_input()
+        else:
+            todo_item.name = get_item_name()
+            todo_item.description = get_item_description()
 
 
 def remove_item():
-    while True:
-        user_input = get_and_check_input()
-        if user_input:
-            for i in Todo.all_todo_items:
-                    if i == Todo.all_todo_items[user_input]:
-                        Todo.all_todo_items.remove(i)
-            break
-        else:
-            return invalid_input()
+    todo_item = linking_user_input_to_item_index()
+    if todo_item is False:
+            invalid_input()
+    else:
+        Todo.all_todo_items.remove(todo_item)
 
 
 def change_item_status():
-    while True:
-        user_input = get_and_check_input()
-        if user_input:
-            for i in Todo.all_todo_items:
-                if i == Todo.all_todo_items[user_input]:
-                    i.is_done = True
-            break
+        todo_item = linking_user_input_to_item_index()
+        if todo_item is False:
+                invalid_input()
         else:
-            return invalid_input()
-
-
-def get_and_check_input():
-    while True:
-        choice_item_by_index = get_item_index()
-        if choice_item_by_index.isdigit():
-            choice_item_by_index = int(choice_item_by_index)
-            if choice_item_by_index in range(len(Todo.all_todo_items)):
-                return choice_item_by_index
-            else:
-                return False
-        else:
-            return False
+            todo_item.is_done = True
