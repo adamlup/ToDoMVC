@@ -3,6 +3,7 @@ def print_menu():
                    'Mark item as done', 'Display item\'s list',
                    'Display specific todo item\'s details', 'Exit']
     index = 1
+    print('\n')
     for elm in choice_list:
         print(index, elm)
         index += 1
@@ -52,4 +53,3 @@ def get_item_index():
 
 def invalid_input():
     return print('Invalid input')
-
